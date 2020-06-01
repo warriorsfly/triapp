@@ -58,6 +58,9 @@ class PatientRescueModel  @Inject constructor (private val patientApi: PatientAp
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                it.Rows?.forEach { item->item.rescues.sortByDescending {
+                    resc->resc.updatedAt
+                } }
                 loadRescueRecordResult.value=it
 
             },::error)
@@ -68,6 +71,10 @@ class PatientRescueModel  @Inject constructor (private val patientApi: PatientAp
     }
     fun getPatientRescue(){
         getPatientRescue(QueryModel().apply {
+            PageCondition.SortConditions.let {
+                it.clear()
+                it.add(QueryModel.SortCondition("Id"))
+            }
             FilterGroup.Rules.add(QueryModel.Rule("patientId",patientId,QueryModel.Filter.Equal.value))
         })
 

@@ -90,14 +90,14 @@ data class Rescue(
         }
 
     @Bindable
-    var pupilDiameterLeft: String? = null
+    var pupilDiameterLeft: String? = "3.0"
         set(value) {
             field = value
             notifyPropertyChanged(BR.pupilDiameterLeft)
         }
 
     @Bindable
-    var pupilDiameterRight: String? = null
+    var pupilDiameterRight: String? = "3.0"
         set(value) {
             field = value
             notifyPropertyChanged(BR.pupilDiameterRight)
