@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.warriorsfly.core.utils.Converter"/>
+        <variable name="viewModel" type="com.wxsoft.triapp.ui.rating.RatingSubjectViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.rating.RatingSubjectActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/list"
+            android:paddingTop="6.5dp"
+            android:paddingBottom="6.5dp"
+            android:background="@color/line_gray"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/score_panel"/>
+
+        <TextView
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="match_parent"
+            android:id="@+id/score_panel"
+            android:textColor="@color/white"
+            tools:text="ok"
+            android:padding="15dp"
+            android:gravity="center_vertical|right"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_height="47.5dp"/>
+
+<!--        android:text="@{viewModel.rating.grade.gradeDesc==null?``:viewModel.rating.grade.gradeDesc}"-->
+        <FrameLayout
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:elevation="3dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_rating_score_white"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="45dp"
+            android:layout_height="wrap_content">
+
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:indeterminate="false"
+                android:layout_gravity="fill"
+                android:id="@+id/process"
+                tools:max="13"
+                tools:secondaryProgress="5"
+                tools:progress="13"
+                android:layout_width="63dp"
+                android:layout_height="63dp"/>
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@{Converter.intToString (viewModel.rating.score)}"
+                android:textSize="30sp"
+                tools:text="12" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

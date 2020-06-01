@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#000000</color>
+    <color name="colorPrimary">#63B0F8</color>
+    <color name="colorPrimaryDark">#63B0F8</color>
+    <color name="colorAccent">#63B0F8</color>
+    <color name="purple200">#BB86FC</color>
+    <color name="purple500">#6200EE</color>
+    <color name="purple700">#3700B3</color>
+    <color name="teal200">#03DAC5</color>
+    <color name="white">#fff</color>
+    <color name="list1">#1890FF</color>
+    <color name="list2">#17C2C2</color>
+    <color name="list3">#30C25B</color>
+    <color name="list4">#FBCC14</color>
+    <color name="list5">#F04864</color>
+    <color name="list6">#8442E0</color>
+
+    <color name="small_text_gray">#999999</color>
+
+    <color name="line_gray">#E7E4F2</color>
+    <color name="row_up">#63b0f8</color>
+    <color name="row_down">#ee4e5b</color>
+    <color name="tint_rating_title_1">#FAB131</color>
+    <color name="tint_rating_title_2">#63B0F8</color>
+    <color name="tint_rating_title_3">#796EF4</color>
+    <color name="tint_rating_title_4">#30C890</color>
+    <color name="tint_rating_title_5">#0FCEC6</color>
+    <color name="tint_rating_option_unselected">#E7E4F2</color>
+    <color name="tint_rating_option_selected">#63B0F8</color>
+    <color name="tint_rating_option_text_unselected">#999999</color>
+    <color name="tint_rating_option_text_selected">@color/white</color>
+
+    <color name="small_title_text_gray">#525252</color>
+    <color name="dark_gray">#ff808080</color>
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="item" type="com.wxsoft.triapp.data.entity.rating.RatingRecord"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <View
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/line_gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+
+        <TextView
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="21.5dp"
+                android:id="@+id/content"
+                tools:text="GRACE评分"
+                android:layout_marginTop="11dp"
+                android:text="@{item.ratingName}"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="0dp"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                app:layout_constraintLeft_toLeftOf="@id/content"
+                app:layout_constraintTop_toBottomOf="@id/content"
+                android:id="@+id/patient"
+                tools:text="王丽"
+                android:text="@{item.createrName}"
+                android:drawablePadding="4dp"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="11dp"
+                android:drawableStart="@drawable/ic_doctor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                app:layout_constraintLeft_toRightOf="@id/patient"
+                app:layout_constraintTop_toBottomOf="@id/content"
+                android:id="@+id/time"
+                android:layout_marginStart="13dp"
+                tools:text="09:10"
+                android:layout_marginBottom="11dp"
+                android:text="@{item.CreatedTime.substring(11,16)}"
+                android:drawablePadding="4dp"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:drawableStart="@drawable/ic_common_clock"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                app:layout_constraintBottom_toBottomOf="@id/time"
+                app:layout_constraintTop_toTopOf="@id/content"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/score"
+                android:layout_marginEnd="16dp"
+                tools:text="86"
+                android:text="@{String.valueOf(item.score)}"
+                android:drawablePadding="10dp"
+                android:textColor="@color/small_title_text_gray"
+                android:textSize="28sp"
+                android:layout_marginTop="4dp"
+                android:drawableEnd="@drawable/ic_right_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

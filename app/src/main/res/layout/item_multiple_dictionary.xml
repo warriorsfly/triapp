@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="dic"
+            type="com.wxsoft.triapp.data.entity.Dictionary" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView
+            invisibleUnless="@{dic.checked}"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="6dp"
+            android:src="@drawable/bg_ic_checked_drug"/>
+    <TextView
+        android:id="@+id/text"
+        android:text="@{dic.name}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:paddingLeft="@dimen/list_item_spacing_half"
+        android:paddingTop="@dimen/list_item_spacing_half"
+        android:paddingRight="@dimen/list_item_spacing"
+        android:paddingBottom="@dimen/list_item_spacing_half"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="Hello" />
+    </LinearLayout>
+</layout>

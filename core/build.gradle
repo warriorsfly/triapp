@@ -1,0 +1,99 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/dragonfly/Documents/Work/fcare/key.jks')
+            storePassword '123456'
+            keyAlias = 'key0'
+            keyPassword '123456'
+        }
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+
+    compileSdkVersion 'android-R'
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//        育慧
+//        buildConfigField 'String', 'ENDPOINT', '"http://192.168.1.106:5001"'
+//        buildConfigField 'String', 'API_ENDPOINT', '"http://192.168.1.106:5001/api/"'
+//        公司
+//        buildConfigField 'String', 'ENDPOINT', '"http://112.27.113.252:10102"'
+//        buildConfigField 'String', 'API_ENDPOINT', '"http://112.27.113.252:10102/api/"'
+//        合二
+
+
+        sourceSets {
+            main {
+                jniLibs.srcDir 'libs'
+                //说明so的路径为该libs路径，关联所有地图SDK的so文件
+            }
+        }
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = ["room.schemaLocation":
+//                                     "$projectDir/schemas".toString()]
+//            }
+//        }
+    }
+
+
+    buildTypes {
+        release {
+//            debuggable true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    buildToolsVersion = '30.0.0 rc4'
+
+}
+
+dependencies {
+//    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    //rxkotlin
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation 'com.yanzhenjie:permission:2.0.2'
+    implementation 'androidx.paging:paging-runtime:2.1.2'
+}
+repositories {
+    mavenCentral()
+}

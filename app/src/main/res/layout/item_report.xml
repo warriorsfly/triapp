@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="item" type="com.wxsoft.triapp.data.entity.Report" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+
+<!--        levelAt="@{item.level}"-->
+        <TextView
+            android:id="@+id/name"
+            tools:text="张秀兰"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:text="@{item.examName}"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/complaint"
+            android:visibility="gone"
+            android:text="已发布"
+            android:background="@drawable/bg_published"
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="11sp"
+
+            android:layout_margin="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        <TextView
+            android:id="@+id/time"
+            invisibleUnless="@{item.reportTime!=null}"
+            tools:text="2020-05-05 11:12:13"
+            android:text="@{item.reportTime==null?``:item.reportTime.replace(`T`,` `)}"
+            android:maxLength="16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#bbbbbb"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@id/name"/>
+
+
+        <TextView
+            android:id="@+id/rowe3_3_1"
+            android:layout_width="14dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="19dp"
+            android:background="@drawable/ic_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@id/name"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/line"
+            android:background="#DDDDDD"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

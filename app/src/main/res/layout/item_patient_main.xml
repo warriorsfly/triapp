@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="patient" type="com.wxsoft.triapp.data.entity.PatientWithDetail" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <TextView
+            android:id="@+id/level"
+            android:gravity="center"
+            tools:text="未分诊"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_oval"
+            android:textColor="@{patient.textColor}"
+            android:backgroundTint="@{patient.levelColor}"
+            android:text="@{patient.levelDescription}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+<!--        levelAt="@{patient.level}"-->
+        <TextView
+            android:id="@+id/name"
+            tools:text="张秀兰"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:text="@{patient.name}"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toRightOf="@id/level"
+            app:layout_constraintTop_toTopOf="@id/level"/>
+
+        <TextView
+            android:id="@+id/gender"
+            tools:text="男"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:textSize="16sp"
+            android:text="@{patient.gender==1?`男`:`女`}"
+            app:layout_constraintLeft_toRightOf="@id/name"
+            app:layout_constraintTop_toTopOf="@id/name"/>
+
+        <TextView
+            android:id="@+id/age"
+            tools:text="23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:textSize="16sp"
+            android:text="@{String.valueOf(patient.age)}"
+            app:layout_constraintLeft_toRightOf="@id/gender"
+            app:layout_constraintTop_toTopOf="@id/gender"/>
+
+        <TextView
+            android:id="@+id/ageUnit"
+            tools:text="岁"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="@{patient.ageUnit.equals(`1`)?`岁`:`月`}"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toRightOf="@id/age"
+            app:layout_constraintTop_toTopOf="@id/age"/>
+
+
+
+        <TextView
+            android:id="@+id/greenpath"
+            tools:text="孕产妇"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:textColor="#E9533A"
+            android:textSize="11sp"
+            dictionaryGreenAt="@{patient.greenPassageWay}"
+            app:layout_constraintLeft_toRightOf="@id/ageUnit"
+            app:layout_constraintBottom_toBottomOf="@id/ageUnit"/>
+
+
+        <TextView
+            android:id="@+id/timing"
+            tools:text="03-12 14:50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:textColor="#E9533A"
+            android:textSize="11sp"
+            android:layout_marginRight="12dp"
+            android:drawablePadding="6dp"
+            android:maxLength="19"
+
+            android:drawableLeft="@drawable/ic_timing_clock"
+            android:text="@{patient.onset.substring(5,16).replace(`T`,` `)}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/greenpath"/>
+
+        <TextView
+            android:id="@+id/complaint"
+            tools:text="诊断：晕厥，产褥期并发症"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#BBBBBB"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:layout_marginTop="2dp"
+            android:text="@{`诊断:`+patient.complaint==null?``:patient.complaint}"
+            app:layout_constraintLeft_toLeftOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@id/name"/>
+
+        <TextView
+            android:id="@+id/sfz"
+            tools:text="342222199001012222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#BBBBBB"
+            android:textSize="13sp"
+            android:layout_marginTop="8dp"
+            android:text="@{patient.ic}"
+            app:layout_constraintLeft_toLeftOf="@id/level"
+            app:layout_constraintTop_toBottomOf="@id/complaint"/>
+
+        <TextView
+            android:id="@+id/bed"
+            tools:text="11床"
+            android:paddingHorizontal="9dp"
+            android:paddingVertical="2dp"
+            android:background="@drawable/bg_common1"
+            android:backgroundTint="#108EE9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:textColor="#fff"
+            android:textSize="11sp"
+            invisibleUnless="@{patient.bedName!=null}"
+            android:text="@{patient.bedName}"
+            android:layout_marginRight="12dp"
+            app:layout_constraintRight_toLeftOf="@id/station"
+            app:layout_constraintBottom_toBottomOf="@id/sfz"/>
+
+        <TextView
+            android:id="@+id/station"
+            android:paddingHorizontal="9dp"
+            android:paddingVertical="2dp"
+            android:background="@drawable/bg_common1"
+            android:backgroundTint="#FFAA00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:textColor="#fff"
+            android:textSize="11sp"
+            android:layout_marginRight="12dp"
+            dictKeyAt="@{patient.station}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/sfz"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#DDDDDD"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
