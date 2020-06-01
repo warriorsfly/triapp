@@ -14,7 +14,7 @@ import com.wxsoft.triapp.adapter.AtomDiffUtil
 import com.wxsoft.triapp.adapter.AtomViewHolder
 import com.wxsoft.triapp.data.entity.Dictionary
 import com.wxsoft.triapp.databinding.ItemMultipleDictionaryBinding
-import kotlinx.android.synthetic.main.new_dictionary_picker.*
+import kotlinx.android.synthetic.main.new_dictionary_multiple_picker.*
 
 class DictionaryMutiplePicker(private val dictionarySelected: (Dictionary) -> Unit) :
     BottomSheetDialogFragment() {
@@ -31,7 +31,7 @@ class DictionaryMutiplePicker(private val dictionarySelected: (Dictionary) -> Un
         adapter = object : AtomAdapter<Dictionary, ItemMultipleDictionaryBinding>(
             object : AtomDiffUtil<Dictionary>() {
                 override fun areContentsTheSame(oldItem: Dictionary, newItem: Dictionary): Boolean {
-                    return oldItem.Name == newItem.Name
+                    return oldItem.checked == newItem.checked
                 }
 
                 override fun areItemsTheSame(oldItem: Dictionary, newItem: Dictionary): Boolean {
@@ -50,7 +50,7 @@ class DictionaryMutiplePicker(private val dictionarySelected: (Dictionary) -> Un
                         if (getItem(position).Id == 0) {
                             dismiss()
                         } else {
-                            getItem(position).Checked = !getItem(position).Checked
+                            getItem(position).checked = !getItem(position).checked
                         }
                     }
                 }.executePendingBindings()
@@ -81,7 +81,7 @@ class DictionaryMutiplePicker(private val dictionarySelected: (Dictionary) -> Un
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        list.adapter = adapter
+        recyclerview.adapter = adapter
 
         arguments?.getInt("parentId")?.let { parentId ->
             val list = mutableListOf<Dictionary>().apply {

@@ -14,10 +14,7 @@ import com.wxsoft.triapp.App
 import com.wxsoft.triapp.R
 import com.wxsoft.triapp.data.entity.Dictionary
 import com.wxsoft.triapp.databinding.ActivityRescueEditBinding
-import com.wxsoft.triapp.ui.common.BaseFragment
-import com.wxsoft.triapp.ui.common.DictionarySinglePicker
-import com.wxsoft.triapp.ui.common.FragmentArgs
-import com.wxsoft.triapp.ui.common.ITimeSelected
+import com.wxsoft.triapp.ui.common.*
 import com.wxsoft.triapp.ui.widgets.FragmentContainerActivity
 import com.wxsoft.triapp.utils.DateTimeUtils
 import javax.inject.Inject
@@ -77,7 +74,7 @@ class PatientRescueFragment : BaseFragment(), ITimeSelected {
                 -5 -> showDictionaryPicker(binding.rowe33, -4)
                 -6 -> showDictionaryPicker(binding.rowe34, -4)
                 -7 -> showDictionaryPicker(binding.rowe314, "Apostasis.Handle")
-                -8 -> showDictionaryPicker(binding.rowe3131, 31)
+                -8 -> showMultipleDictionaryPicker(binding.rowe3131, 31)
             }
         })
 
@@ -101,6 +98,7 @@ class PatientRescueFragment : BaseFragment(), ITimeSelected {
 
     private var timePicker: DingLikeTimePicker? = null
     private var dictionaryPicker: DictionarySinglePicker? = null
+    private var dictionaryMultiplePicker: DictionaryMutiplePicker? = null
 
     private fun createDatePickerDialog(time: Long): DingLikeTimePicker {
 
@@ -111,6 +109,13 @@ class PatientRescueFragment : BaseFragment(), ITimeSelected {
 
         return DictionarySinglePicker(::doWithDictionary)
     }
+
+
+    private fun createMultipleDictionaryPickerDialog(): DictionaryMutiplePicker {
+
+        return DictionaryMutiplePicker(::doWithDictionary)
+    }
+
 
     private fun doWithDictionary(dic: Dictionary) {
 
@@ -159,6 +164,20 @@ class PatientRescueFragment : BaseFragment(), ITimeSelected {
             dictionaryPicker?.show(childFragmentManager, "all")
         }
     }
+
+    private fun showMultipleDictionaryPicker(v: View?, parentId: Int) {
+        v?.let {
+            selectedId = it.id
+            dictionaryMultiplePicker = createMultipleDictionaryPickerDialog().apply {
+                val args = FragmentArgs().add("parentId", parentId)
+                val bundle = Bundle()
+                FragmentArgs.toBundle(bundle, args)
+                arguments = bundle
+            }
+            dictionaryMultiplePicker?.show(childFragmentManager, "all")
+        }
+    }
+
 
     private fun showDictionaryPicker(v: View?, parentId: String) {
         v?.let {

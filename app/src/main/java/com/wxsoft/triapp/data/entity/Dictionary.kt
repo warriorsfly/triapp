@@ -19,10 +19,10 @@ data class Dictionary(
 
     @Bindable
     @Transient
-    var Checked:Boolean=false
+    var checked:Boolean=false
         set(value) {
             field=value
-            notifyPropertyChanged(BR.Checked)
+            notifyPropertyChanged(BR.checked)
         }
 
 }

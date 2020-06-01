@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Triapp">
         <activity
             android:name=".ui.main.MainActivity"
-            android:theme="@style/Theme.Triapp.AppBarOverlay"></activity>
+            android:theme="@style/Theme.Triapp.AppBarOverlay"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ui.login.LoginActivity"
             android:theme="@style/Theme.Triapp.AppBarOverlay" >
