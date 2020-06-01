@@ -113,7 +113,7 @@ class PatientRescueFragment : BaseFragment(), ITimeSelected {
 
     private fun createMultipleDictionaryPickerDialog(): DictionaryMutiplePicker {
 
-        return DictionaryMutiplePicker(::doWithDictionary)
+        return DictionaryMutiplePicker(::doWithDictionarys)
     }
 
 
@@ -135,6 +135,22 @@ class PatientRescueFragment : BaseFragment(), ITimeSelected {
             R.id.rowe3_14 -> viewModel.rescueRecord.value?.curemeasure2 = dic.Name
             R.id.rowe3_13_1 -> viewModel.rescueRecord.value?.curemeasure = dic.Name
             else -> (binding.root.findViewById<Button>(selectedId))?.text = dic.Name
+        }
+
+        selectedId = 0
+    }
+
+
+    private fun doWithDictionarys(dics: List<Dictionary>) {
+
+        dictionaryMultiplePicker?.apply {
+            dismiss()
+            onDestroy()
+        }
+        dictionaryMultiplePicker = null
+        when (selectedId) {
+
+            R.id.rowe3_13_1 -> viewModel.rescueRecord.value?.curemeasure = dics.joinToString { it.Name }
         }
 
         selectedId = 0

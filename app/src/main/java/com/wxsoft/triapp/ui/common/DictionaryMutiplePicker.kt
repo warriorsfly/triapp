@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wxsoft.triapp.App
@@ -16,7 +17,7 @@ import com.wxsoft.triapp.data.entity.Dictionary
 import com.wxsoft.triapp.databinding.ItemMultipleDictionaryBinding
 import kotlinx.android.synthetic.main.new_dictionary_multiple_picker.*
 
-class DictionaryMutiplePicker(private val dictionarySelected: (Dictionary) -> Unit) :
+class DictionaryMutiplePicker(private val dictionarySelected: (List<Dictionary>) -> Unit) :
     BottomSheetDialogFragment() {
 
 
@@ -73,7 +74,9 @@ class DictionaryMutiplePicker(private val dictionarySelected: (Dictionary) -> Un
 
         }
 
-
+        view.findViewById<Button>(R.id.submit).setOnClickListener {
+            dictionarySelected(adapter.currentList.filter { it.checked })
+        }
 
         return view
     }
